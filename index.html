@@ -295,5 +295,15 @@ sweep(document)})();</script>
     © 風澤醫療體系 桃鶯水藥室
   </footer>
 
+  <script>
+    /* 從上一頁／下一頁返回入口時，自動重新載入一次，避免顯示空白頁。
+       重新載入後的導覽類型是 reload，不會重複觸發。 */
+    window.addEventListener("pageshow", function (event) {
+      var nav = performance.getEntriesByType && performance.getEntriesByType("navigation")[0];
+      var fromHistory = event.persisted || (nav && nav.type === "back_forward");
+      if (fromHistory) location.reload();
+    });
+  </script>
+
 </body>
 </html>
